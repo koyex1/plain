@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+	
+	<!-- 
+	TILES FOR TEMPLATES ONLY. NOTHING MORE
+	<tiles-definitions>
+	<definition name="websitetemplate" template="/WEB-INF/views/templates/template_website.jsp">
+	<put-attribute name="home" value="/WEB-INF/views/home.jsp"/>
+	</definition>
+	</tiles-definitions>
+	 -->
+	<!--    TOO NECESSARY-->
+	<tiles-definitions>
+	<definition name="websitetemplate" template="/WEB-INF/views/templates/template_website.jsp">
+	<put-attribute name="content" value=""/>
+	</definition>
+	
+	<definition name="home.index" extends="websitetemplate">
+	<put-attribute name="content" value="/WEB-INF/views/home/index.jsp"/>
+	</definition>
+	
+	<definition name="login.index" extends="websitetemplate">
+	<put-attribute name="content" value="/WEB-INF/views/login/index.jsp"/>
+	</definition>
+	
+	
+	<!-- DASHBOARD TEMPLATES -->
+	<definition name="dashboard.index" extends="websitetemplate">
+	<put-attribute name="content" value="/WEB-INF/views/dashboard/index.jsp"/>
+	</definition>
+	
+	<!--  
+	<definition name="dashboard.profile" extends="websitetemplate">
+	<put-attribute name="content" value="/WEB-INF/views/dashboard/profile.jsp"/>
+	</definition>-->
+	
+	<definition name="dashboard.manageproducts" extends="websitetemplate">
+	<put-attribute name="content" value="/WEB-INF/views/dashboard/manageproducts.jsp"/>
+	</definition>
+	
+	<definition name="dashboard.usersdata" extends="websitetemplate">
+	<put-attribute name="content" value="/WEB-INF/views/dashboard/usersdata.jsp"/>
+	</definition>
+	
+	<definition name="dashboard.websiteUI" extends="websitetemplate">
+	<put-attribute name="content" value="/WEB-INF/views/dashboard/websiteUI.jsp"/>
+	</definition>
+	
+	<!-- SIGNUP -->
+	<definition name="signup.index" extends="websitetemplate">
+	<put-attribute name="content" value="/WEB-INF/views/signup/index.jsp"/>
+	</definition>
+	
+	<!-- CATEGORY PAGE -->
+	<definition name="category.index" extends="websitetemplate">
+	<put-attribute name="content" value="/WEB-INF/views/category/index.jsp"/>
+	</definition>
+	
+	<!-- product PAGE -->
+	<definition name="product.index" extends="websitetemplate">
+	<put-attribute name="content" value="/WEB-INF/views/product/index.jsp"/>
+	</definition>
+	
+	
+	</tiles-definitions>
+	
+	
