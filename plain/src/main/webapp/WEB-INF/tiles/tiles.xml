@@ -58,10 +58,15 @@
 	<put-attribute name="content" value="/WEB-INF/views/category/index.jsp"/>
 	</definition>
 	
-	<!-- product PAGE -->
-	<definition name="product.index" extends="websitetemplate">
-	<put-attribute name="content" value="/WEB-INF/views/product/index.jsp"/>
+	<!-- checkout page -->
+	<definition name="cartline.checkout.index" extends="websitetemplate">
+	<put-attribute name="content" value="/WEB-INF/views/cartline/checkout/index.jsp"/>
 	</definition>
+	
+	<definition name="dashboard.orders.index" extends="websitetemplate">
+	<put-attribute name="content" value="/WEB-INF/views/dashboard/orders/index.jsp"/>
+	</definition>
+	
 	
 	
 	</tiles-definitions>

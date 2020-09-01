@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <div>
 <h1>THIS IS THE HOME PAGE</h1>
 <c:if test="${not empty operation}">
@@ -9,7 +10,11 @@
 </c:if>
 
 
-	<c:forEach items= "${products}" var="item">
+
+	
+	
+	
+		<c:forEach items= "${products}" var="item">
 <a href="${Root}/product/${item.id}" >
 		<div class="card border-success mb-3" style="max-width: 18rem;">
 			<div class="card-body text-success">
@@ -23,6 +28,10 @@
 		</div>
 </a>
 	</c:forEach>
+	
+	
+	
+	
 <div>
 
 

@@ -6,14 +6,17 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import net.olu.models.Account;
 import net.olu.models.Category;
 import net.olu.models.Product;
 
 @Repository("productRepository")
 public interface ProductRepository extends JpaRepository<Product, Integer>{
 
+	
+	public List<Product> findByIdIn(List<Integer> ids);
+	public Product findByIdAndAccount(Integer id, Account account);
 	public List<Product> findByCategory(Category category);
-
 	public List<Product> findAll();
 	
 	@Query(value="SELECT p.* "
@@ -22,6 +25,9 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
 			+ "AND a.taskId= t.id "
 			+ "AND t.id=?1", nativeQuery=true)
 	public List<Product> findAllProductsByTask(int id);
+	
+//
+	List<Product> findByAccount(Account account);
 	
 	
 	

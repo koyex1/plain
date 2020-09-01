@@ -68,29 +68,110 @@
   <a class="nav-link " href="${Root}/logout">Logout</a>
   </sec:authorize>
   
-     <a class="nav-link " href="${Root}/dashboard"><h5>${accountGlobal.fullName}</h5></a>
+     <a class="nav-link " href="${Root}/dashboard"> <h5> ${accountGlobal.fullName}</h5></a>
+     
     <a class="nav-link glyphicon glyphicon-shopping-cart" href="${Root}/cartline"> Cart: 
     <div> Qty:${cart.quantity}  </div>
     <div> &#8358;${cart.totalPrice }</div>
-    </a>
-  
+    </a>  
 
   
   
 </nav>
 
-<!-- BOSS MAN -->
-<div>
-<tiles:insertAttribute name="content"/>
+
+<!-- CART message -->
+<c:if test="${not empty operation}">
+<div class="alert alert-success" role="alert">
+  ${operation}
 </div>
+</c:if>
+
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Item</th>
+       
+       <th scope="col"> Still in Stock</th>
+         <th scope="col">single item</th>
+      <th scope="col">Your Quantity</th>
+      <th scope="col">Total Price of Item</th>
+    </tr>
+  </thead>
+  <tbody>
+         <sf:form
+method="post"
+action="${Root}/cartline"
+modelAttribute="cartlineForm"
+>
+  <c:forEach items="${cartlineForm.cartlineList}" var="item" varStatus="status">
+    <tr>
+      <th scope="row"></th>
+      <td>${item.name }</td>
+      
+      <td>${item.inStock}</td>
+  <td>&#8358;${item.price }</td>
+
+<!-- PROBLEM -->
+
+<td>
+<sf:input value="${item.quantity}" path="cartlineList[${status.index}].quantity" type="number" min="0" max="${item.inStock}" class="form-control col-xs-2" id="inputCity"/>
+
+
+  <sf:input type="hidden" path="cartlineList[${status.index}].id"/>
+  <sf:input type="hidden" path="cartlineList[${status.index}].price"/>
+   <sf:input type="hidden" path="cartlineList[${status.index}].name"/>
+  <sf:input type="hidden" path="cartlineList[${status.index}].account"/>
+
+  <button type="submit" class="glyphicon glyphicon-refresh btn btn-primary col-xs-1"></button>
+ </td>
+
+
+<!-- PROBLEM -->
+ <td>&#8358;${item.totalPrice}</td>
+ <br>
+ <td>
+        <a href="${Root}/cartline/removeItem/${item.id}" class="btn btn-danger " ><span class="
+glyphicon glyphicon-remove">Remove</span></a></td>
+        
+  
+    </tr>
+    
+    </c:forEach>
+    </sf:form>
+    
+    </tbody>
+    </table>
+    <div>
+    <div style="position:absolute; left:70%">
+    <h5>Total Price:&#8358; ${totalprice}</h5>
+    <div >
+        <a href="${Root}/cartline/removeAllItems" class="btn btn-danger">Remove All</a>
+    
+    <a href="${Root}/cartline/checkout" class="btn btn-success">Check Out</a>
+    </div>
+	</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 </div>
-
-
-
 </body>
-
-
 </html>

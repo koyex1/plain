@@ -2,10 +2,13 @@ package net.olu.services;
 
 import java.util.List;
 
+import net.olu.models.Cartline;
 import net.olu.models.Category;
 import net.olu.models.Product;
 
 public interface ProductService {
 	List<Product> findAllByCategory(Category category);
 	public List<Product> findAll();
+	public List<Integer> QuanityLeft(int left);
+	public List<Product> listChanges(List<Product> product,List<Cartline> cartline);
 }

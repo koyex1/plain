@@ -154,7 +154,7 @@ modelAttribute="product">
   </div>
   <sf:input type="hidden" path="id"/>
   <sf:input type="hidden" path="account"/>
-  <button type="submit" class="btn btn-primary">Add</button>
+  <button type="submit" class="btn btn-primary">${buttonProduct}</button>
 </sf:form>
 
 <br>
@@ -172,7 +172,7 @@ modelAttribute="category">
     <sf:hidden path="id"/>
         <sf:hidden path="quantity"/>
     
-      <button type="submit" class="btn btn-primary">Add New Category</button>
+      <button type="submit" class="btn btn-primary">${buttonCategory} Category</button>
     
     </sf:form>
     

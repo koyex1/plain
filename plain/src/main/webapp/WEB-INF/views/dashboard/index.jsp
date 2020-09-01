@@ -10,6 +10,7 @@
   <a class="nav-link active" href="${Root}/dashboard/profile">Profile</a>
    <a class="nav-link active" href="${Root}/dashboard/manageproducts">Manage Product</a>
       <a class="nav-link active" href="${Root}/dashboard/usersdata">Access Users Data</a>
+            <a class="nav-link active" href="${Root}/dashboard/orders">Orders</a>
          <a class="nav-link active" href="${Root}/dashboard/websiteUI">Website UI</a>
    </nav>
 </div>

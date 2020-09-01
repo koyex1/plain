@@ -13,16 +13,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cartline", catalog = "plain")
-public class Cartline implements Serializable  {
+@Table(name = "orderline", catalog = "plain")
+public class Orderline implements Serializable  {
 	private Integer id;
 	private String name;
 	private int price;
 	private int quantity;
-	private int inStock;
-	private Account account;
-	private Product product;
 	private int totalPrice;
+	private String fullName;
+	private String Address;
 	private Account supplier;
 	
 	@Id
@@ -53,36 +52,6 @@ public class Cartline implements Serializable  {
 		this.quantity = quantity;
 	}
 	@ManyToOne
-	@JoinColumn(name = "accountId", nullable = false)
-	public Account getAccount() {
-		return account;
-	}
-	public void setAccount(Account account) {
-		this.account = account;
-	}
-	public int getInStock() {
-		return inStock;
-	}
-	public void setInStock(int inStock) {
-		this.inStock = inStock;
-	}
-	
-	@ManyToOne
-	@JoinColumn(name = "productId", nullable = false)
-	public Product getProduct() {
-		return product;
-	}
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-	public int getTotalPrice() {
-		return totalPrice;
-	}
-	public void setTotalPrice(int totalPrice) {
-		this.totalPrice = totalPrice;
-	}
-	
-	@ManyToOne
 	@JoinColumn(name = "supplierId", nullable = false)
 	public Account getSupplier() {
 		return supplier;
@@ -90,6 +59,24 @@ public class Cartline implements Serializable  {
 	public void setSupplier(Account supplier) {
 		this.supplier = supplier;
 	}
-
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+	public String getFullName() {
+		return fullName;
+	}
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+	public String getAddress() {
+		return Address;
+	}
+	public void setAddress(String address) {
+		Address = address;
+	}
+	
 	
 }
