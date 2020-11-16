@@ -23,7 +23,8 @@ public class UsersDataController {
 	public String Usersdata(@RequestParam(name="operation", required=false) String operation
 			,ModelMap mp) {
 		//suppliers data
-		mp.put("suppliers", productRepository.findAllProductsByTask(9));
+//		mp.put("suppliers", productRepository.findAllProductsByTask(9));
+		mp.put("suppliers", productRepository.findAll());
 		if(operation!=null) {
 			if(operation.equals("supplier_deleted")) {
 				mp.put("operation","product successfully deleted");

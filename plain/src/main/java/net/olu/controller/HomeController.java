@@ -28,10 +28,9 @@ public class HomeController {
 	public String Home(@RequestParam(name="operation", required=false) String operation,
 			ModelMap mp) {
 	
-		
 		if(operation!=null) {
 		if(operation.equals("success")) {
-			mp.put("operation", "Logged In Successfully");
+			mp.put("operation", "Logged In Successfully: Welcome ");
 			
 		}
 		}

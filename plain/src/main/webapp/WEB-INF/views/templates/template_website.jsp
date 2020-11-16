@@ -11,6 +11,8 @@
 <!-- setting constant values -->
 <c:set var="Root" value="${pageContext.request.contextPath}"/>
 <spring:url var="resources" value="${pageContext.request.contextPath}/resources"/>
+<c:set var="photos" value="${resources}/photos/"/>
+
 
 
 <html lang="en">
@@ -56,9 +58,10 @@
 
 <nav class="nav nav-pills nav-justified">
   <a class="nav-link active" href="${Root}/home">Home</a>
-  <a class="nav-link" href="#">Profile</a>
-   <a class="nav-link " href="#">ManageProducts</a>
+   <sec:authorize access="isAuthenticated()">
    <a class="nav-link " href="${Root}/dashboard">Dashboard</a>
+    </sec:authorize>
+    <div class="ml-auto nav">
    
    <sec:authorize access="isAnonymous()">
     <a class="nav-link " href="${Root}/signup">SignUp</a>   
@@ -66,13 +69,13 @@
   </sec:authorize>
   <sec:authorize access="isAuthenticated()">
   <a class="nav-link " href="${Root}/logout">Logout</a>
-  </sec:authorize>
-  
-     <a class="nav-link " href="${Root}/dashboard"><h5>${accountGlobal.fullName}</h5></a>
-    <a class="nav-link glyphicon glyphicon-shopping-cart" href="${Root}/cartline"> Cart: 
+ <a class="nav-link " href="${Root}/dashboard"><h5>${accountGlobal.fullName}</h5></a>
+ </sec:authorize>
+ <a  class="nav-link glyphicon glyphicon-shopping-cart" href="${Root}/cartline"> Cart: 
     <div> Qty:${cart.quantity}  </div>
     <div> &#8358;${cart.totalPrice }</div>
     </a>
+    </div>
   
 
   

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import net.olu.models.Account;
 import net.olu.models.Category;
@@ -18,6 +20,7 @@ import net.olu.repositories.AccountRepository;
 import net.olu.repositories.CategoryRepository;
 import net.olu.repositories.ProductRepository;
 import net.olu.services.AccountService;
+import net.olu.services.ProductService;
 
 @Controller
 @RequestMapping("dashboard")
@@ -25,6 +28,9 @@ public class ManageProductsController {
 	
 	@Autowired
 	AccountService accountService;
+	
+	@Autowired
+	ProductService productService;
 	
 	@Autowired
 	AccountRepository accountRepository;
@@ -76,7 +82,9 @@ public class ManageProductsController {
 		return "dashboard/manageproducts";
 	}
 	@PostMapping(value="/manageproducts_product_process")
-	public String HandleManageProducts(@ModelAttribute("product") Product product, Authentication auth) {
+	public String HandleManageProducts(@ModelAttribute("product") Product product, 
+			Authentication auth, @RequestParam("image") MultipartFile image
+			, RedirectAttributes redirectAttributes) {
 		//NULL NEW PRODUCT
 		if(product.getId()==null) {
 		product.setAccount(accountRepository.findByUsername(auth.getName()));
@@ -84,6 +92,18 @@ public class ManageProductsController {
 		product.getCategory().setQuantity(1 + categoryRepository
 				.findQuantityById(product.getCategory().getId()));
 		}
+		
+		//handle image (PRODUCTSERVICE CLASS BUT NOTE INTERACTING
+		// WITH DATABASE BUT SYSTEM)
+		try {
+			productService.saveImage(product);
+		} catch (Exception e) {
+			redirectAttributes.addFlashAttribute("operation","Failed to upload image");
+		}
+//		redirectAttributes.addFlashAttribute("operation","succesfully uploaded the file "
+//				+ product.getImage().getOriginalFilename());
+		
+		//
 		
 		productRepository.save(product);
 		if(product.getId()==null) {

@@ -20,10 +20,12 @@
 <title></title>
 <!-- BOOTSTRAP 3 CSS and JS -->
 <link href = "${resources}/css/bootstrap.min.css" rel = "stylesheet">
+<link href = "${resources}/myapp.css" rel = "stylesheet">
 </head>
 <body>
 <script src = "${resources}/js/bootstrap.js"></script>
 <div  class="container">
+<div>
 <nav class="nav nav-pills nav-justified">
   <a class="nav-link active" href="${Root}/home">Home</a>
   <a class="nav-link" href="#">Profile</a>
@@ -37,45 +39,49 @@
   </sec:authorize>
 </nav>
 
+</div>
 
 
 
-<div>
 <c:if test="${not empty operation}">
 <div class="alert alert-success" role="alert">
   ${operation}
 </div>
 </c:if>
 
+<div class="profileform ">
+<div class="noCommot">
 <sf:form
 method="post"
 action="${Root}/dashboard/profile_submit"
 modelAttribute="details">
   <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
       <label for="inputEmail4">FullName</label>
       <sf:input path="fullName" type="text" class="form-control" id="inputEmail4" />
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
       <label for="inputPassword4">Username</label>
       <sf:input path="username" type="text" class="form-control" id="inputPassword4"/>
     </div>
   </div>
-  <div class="form-group">
+  <div class="form-row">
+  <div class="form-group col-md-5">
     <label for="inputAddress">Email</label>
     <sf:input path="email" type="text" class="form-control" id="inputAddress" />
   </div>
-  <div class="form-group">
+  <div class="form-group col-md-3">
     <label for="inputAddress2">Password</label>
     <sf:password path="password" class="form-control" id="inputAddress2" />
   </div>
+  </div>
   <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-5">
       <label for="inputCity">Address</label>
-      <sf:input path="address" type="text" class="form-control" id="inputCity"/>
+      <sf:textarea path="address" rows="3" class="form-control" id="inputCity"/>
     </div>
     
-    <div class="form-group col-md-2">
+    <div class="form-group col-md-3">
       <label for="inputZip">Phone</label>
       <sf:input path="phone" type="text" class="form-control" id="inputZip"/>
     </div>
@@ -83,8 +89,9 @@ modelAttribute="details">
   <sf:input type="hidden" path="id"/>
   <sf:input type="hidden" path="status"/>
   <sf:input type="hidden" path="task"/>
-  <button type="submit" class="btn btn-primary">Update</button>
+  <button type="submit" class="btn btn-success">Update</button>
 </sf:form>
+</div>
 </div>
 
 

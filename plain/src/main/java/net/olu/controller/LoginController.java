@@ -22,7 +22,7 @@ public class LoginController {
 			mp.put("operation", "Logged out Successfully");
 		}
 		else if(operation.equals("signup_success")) {
-			mp.put("operation", "Account created out Successfully");
+			mp.put("operation", "Account created Successfully");
 		}
 		}
 		return "login.index";

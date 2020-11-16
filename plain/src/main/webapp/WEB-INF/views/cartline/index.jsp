@@ -11,7 +11,7 @@
 <!-- setting constant values -->
 <c:set var="Root" value="${pageContext.request.contextPath}"/>
 <spring:url var="resources" value="${pageContext.request.contextPath}/resources"/>
-
+<c:set var="photos" value="${resources}/photos"/>
 
 <html lang="en">
 <head>
@@ -93,7 +93,8 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
+    	<th scope="col"></th>
+      <th scope="col"></th>
       <th scope="col">Item</th>
        
        <th scope="col"> Still in Stock</th>
@@ -111,6 +112,7 @@ modelAttribute="cartlineForm"
   <c:forEach items="${cartlineForm.cartlineList}" var="item" varStatus="status">
     <tr>
       <th scope="row"></th>
+      <td><img class="productframe" src="${photos}/${item.product.id}.jpg"></td>
       <td>${item.name }</td>
       
       <td>${item.inStock}</td>

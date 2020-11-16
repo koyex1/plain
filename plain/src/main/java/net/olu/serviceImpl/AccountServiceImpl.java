@@ -23,8 +23,10 @@ public class AccountServiceImpl implements AccountService {
 	@Autowired
 	AccountRepository accountRepository;
 	
-	//loaduserbyusername from userdetailservices gets the details from the form
-	//and passes it to find by username
+	//Behind the scene of the SecurityConfig. String username is a Model class in the security framework
+	//that is latched to the path username in login form
+	//seems like it does another verification for the password somewhere(loadUserByPassword) just like it has done for the username
+	//here before it lathces  to Authentication
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Account account = accountRepository.findByUsername(username);

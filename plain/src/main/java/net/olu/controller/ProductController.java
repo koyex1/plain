@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import net.olu.models.Account;
 import net.olu.models.Cart;
@@ -66,7 +67,9 @@ public class ProductController {
 		return "product/index";
 	}
 	@PostMapping("/add_to_cart/{id}")
-	public String handlesaddingtocart(@PathVariable("id")int id, Authentication auth, @ModelAttribute("cartline") Cartline cartline) {
+	public String handlesaddingtocart(@PathVariable("id")int id, Authentication auth,
+			@ModelAttribute("cartline") Cartline cartline
+			) {
 		Account account = accountRepository.findByUsername(auth.getName());
 		//SETTING PRODUCT
 		Product product= productRepository.getOne(id);

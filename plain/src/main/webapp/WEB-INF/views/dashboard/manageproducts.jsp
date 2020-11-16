@@ -10,6 +10,7 @@
 <!-- setting constant values -->
 <c:set var="Root" value="${pageContext.request.contextPath}"/>
 <spring:url var="resources" value="${pageContext.request.contextPath}/resources"/>
+<c:set var="photos" value="${resources}/photos"/>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -78,14 +79,12 @@
 </div>
 </c:if>
 
-
-<div class="row">
-<!-- COLUMN ONE -->
-    <div class="col-sm">
+<!-- 1st -->
 <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
+      <th scope="col">Image</th>
       <th scope="col">Name</th>
       <th scope="col">Description</th>
       <th scope="col">Price</th>
@@ -97,13 +96,13 @@
   <c:forEach items="${users_products}" var="item">
     <tr>
       <th scope="row"></th>
+      <td ><img style="height: 170px; width: 150px;" src="${photos}/${item.id}.jpg" ></td>
       <td>${item.name }</td>
       <td>${item.description }</td>
-      <td>${item.price }</td>
+      <td>&#8358;${item.price }</td>
        <td>${item.quantity }</td>
-      <td>${item.category.name }</td>
+      <td class="col-xs-1">${item.category.name }</td>
         <td><a href="${Root}/dashboard/manageproducts/product_edit/${item.id}" class="btn btn-success" ><span class="glyphicon glyphicon-pencil">Edit</span></a>
-        <br>
         <a href="${Root}/dashboard/manageproducts/product_delete/${item.id}" class="btn btn-danger " ><span class="glyphicon glyphicon-trash">Delete</span></a></td>
         
   
@@ -112,34 +111,38 @@
     </tbody>
     </table>
 
-  </div>
   
-  <!-- COLUMN 2 -->
-    <div class="col-lg">
-<sf:form
+<div class="row">
+<!-- COLUMN ONE -->
+ <div class="border--green col-xl-6">
+
+
+   <sf:form
 method="post"
 action="${Root}/dashboard/manageproducts_product_process"
-modelAttribute="product">
-  <div class="form-row">
-    <div class="form-group col-md-6">
+modelAttribute="product"
+enctype="multipart/form-data">
+    <div class="form-group ">
       <label for="inputEmail4">Name</label>
       <sf:input path="name" type="text" class="form-control" id="inputEmail4" />
-    </div>
-    <div class="form-group col-md-6">
-      <label for="inputPassword4">Description</label>
-      <sf:input path="description" type="text" class="form-control" id="inputPassword4"/>
-    </div>
+    
   </div>
-  <div class="form-group">
+  <div class="form-group ">
     <label for="inputAddress">Price</label>
-    <sf:input path="price" type="text" class="form-control" id="inputAddress" />
+    <sf:input path="price" type="number" class="form-control" id="inputAddress" />
   </div>
   <div class="form-group">
     <label for="inputAddress2">Quantity</label>
-    <sf:input path="quantity" class="form-control" id="inputAddress2" />
+    <sf:input type="number" path="quantity" class="form-control" id="inputAddress2" />
+  <!--    <sf:errors path="quantity" cssClass="help-block" element="em"/> -->
   </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
+   <div class="form-group">
+    <label for="inputAddress2">Upload image</label>
+    <sf:input path="image" type="file" class="form-control" id="inputAddress2" />    
+  </div>
+  
+
+    <div class="form-group ">
       <label for="inputCity">Category</label>
       <sf:select path="category" type="text" class="form-control" id="inputCity">
       
@@ -151,33 +154,21 @@ modelAttribute="product">
       
       </sf:select>
     </div>
-  </div>
+  
+  <div class="form-group">
+      <label for="inputPassword4">Description</label>
+      <sf:textarea rows="4" cols="30" path="description" type="text" class="form-control" id="inputPassword4"/>
+    </div>
   <sf:input type="hidden" path="id"/>
   <sf:input type="hidden" path="account"/>
   <button type="submit" class="btn btn-primary">${buttonProduct}</button>
 </sf:form>
 
-<br>
- <br>
- <sf:form
-method="post"
-action="${Root}/dashboard/manageproducts_category_process"
-modelAttribute="category">
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4"> New Category</label>
-      <sf:input path="name" type="text" class="form-control" id="inputEmail4" />
-    </div>
-    </div>
-    <sf:hidden path="id"/>
-        <sf:hidden path="quantity"/>
-    
-      <button type="submit" class="btn btn-primary">${buttonCategory} Category</button>
-    
-    </sf:form>
-    
-    <br>
-    
+</div>
+  <!-- COLUMN 2 -->
+  
+      <div class="border--green">
+   <div class="col-lg">
     <table class="table">
   <thead>
     <tr>
@@ -200,6 +191,26 @@ modelAttribute="category">
     </c:forEach>
     </tbody>
     </table>
+    
+    <!-- Add new Category -->
+
+    <sf:form
+method="post"
+action="${Root}/dashboard/manageproducts_category_process"
+modelAttribute="category">
+  <div class="form-row">
+    <div class="form-group">
+      <label for="inputEmail4"> New Category</label>
+      <sf:input path="name" type="text" class="form-control" id="inputEmail4" />
+    </div>
+    </div>
+    <sf:hidden path="id"/>
+        <sf:hidden path="quantity"/>
+    
+      <button type="submit" class="btn btn-primary">${buttonCategory} Category</button>
+    
+    </sf:form>
+    </div>
 
  </div>
  

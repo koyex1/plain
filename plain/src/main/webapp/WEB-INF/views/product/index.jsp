@@ -11,6 +11,8 @@
 <!-- setting constant values -->
 <c:set var="Root" value="${pageContext.request.contextPath}"/>
 <spring:url var="resources" value="${pageContext.request.contextPath}/resources"/>
+<c:set var="photos" value="${resources}/photos"/>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -78,15 +80,15 @@
   
 </nav>
 <div class="media">
-  <img class="align-self-start mr-3" src="..." alt="Generic placeholder image">
+  <img class="productframe-big align-self-start mr-3" src="${photos}/${product.id}.jpg" alt="Generic placeholder image">
   <div class="media-body">
     <h5 class="mt-0">${product.name }</h5>
-    <p>${prodcut.description }</p>
+    <p>${product.description }</p>
     <p>&#8358;${product.price }</p>
     <p>In Stock: ${product.quantity }</p>
   </div>
 </div>
-<div style="width: 70px; position: relative; left:220px">
+<div style="width: 70px; position: absolute; left:800px; top: 280px;">
 <sf:form
 method="post"
 action="${Root}/product/add_to_cart/${product.id }"
@@ -101,8 +103,7 @@ modelAttribute="cartline"
   <sf:input type="hidden" path="account"/>
   <sf:input type="hidden" path="product"/>
     <sf:input type="hidden" path="supplier"/>
- </div> 
- <div style="position: relative; left:300px; bottom: 33px">
+ <br>
    <button type="submit" class="glyphicon glyphicon-shopping-cart btn btn-primary">Add to Cart</button>
  </div>
       

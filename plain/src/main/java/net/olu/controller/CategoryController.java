@@ -28,7 +28,8 @@ public class CategoryController {
 		
 		
 		mp.put("products", productRepository.findByCategory(category));
-
+		mp.put("category", category);
+		
 		return "category.index";
 	}
 

@@ -20,6 +20,7 @@
 <title></title>
 <!-- BOOTSTRAP 3 CSS and JS -->
 <link href = "${resources}/css/bootstrap.min.css" rel = "stylesheet">
+<link href = "${resources}/myapp.css" rel = "stylesheet">
 </head>
 <body>
 <script src = "${resources}/js/bootstrap.js"></script>
@@ -46,7 +47,7 @@
   ${operation}
 </div>
 </c:if>
-
+<div class="profileform" style="">
 <sf:form
 method="post"
 action="${Root}/signup/signup_process"
@@ -88,13 +89,13 @@ modelAttribute="account"
     />
     </sf:select>
   </div>
-  
+  <br>
   <button type="submit" class="btn btn-primary">Submit</button>
   <sf:hidden path="status"/>
     <sf:hidden path="id"/>
   
 </sf:form>
-
+</div>
 </div>
 </div>
 </body>

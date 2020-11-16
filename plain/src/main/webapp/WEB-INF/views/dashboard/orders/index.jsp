@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="resources" value="${pageContext.request.contextPath}/resources"/>
+<c:set var="photos" value="${resources}/photos"/>
 
 <div>
 
@@ -12,7 +14,8 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
       <th scope="col">Customers Name</th>
       <th scope="col">Address</th>
       <th scope="col">Item</th>
@@ -25,12 +28,13 @@
   <c:forEach items="${orders}" var="item">
     <tr>
       <th scope="row"></th>
-      <td>${item.fullName }</td>
-       <td>${item.Address }</td>
-      <td>${item.name }</td>
+      <td><img class="productframe" src="${photos}/${item.id}.jpg"></td>
+      <td>${item.fullName}</td>
+       <td>${item.address}</td>
+      <td>${item.name}</td>
        <td>${item.quantity }</td>
-      <td>${item.price }</td>
-      <td>${item.totalPrice }</td>
+      <td>&#8358;${item.price }</td>
+      <td>&#8358;${item.totalPrice }</td>
       <td>  <a href="${Root}/dashboard/order/deleteOrder/${item.id}" class="btn btn-danger " ><span class="glyphicon glyphicon-trash">Delete</span></a></td>
         
   

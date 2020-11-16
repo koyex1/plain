@@ -26,7 +26,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity httpsecure)throws Exception{
 		
 		httpsecure.authorizeRequests()
-				  .antMatchers("/admin/**").hasRole("ADMIN")
+				  .antMatchers("/signup/**").anonymous()
 				  .and()
 				  .formLogin()
 				  .loginPage("/login")

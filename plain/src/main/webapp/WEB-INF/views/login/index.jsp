@@ -1,18 +1,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<h1>LOGIN PAGE</h1>
+
 <c:if test="${not empty operation}">
-<div class="alert alert-danger" role="alert">
+<div class="alert alert-success" role="alert">
   ${operation}
 </div>
 </c:if>
 
+<div class="d-flex justify-content-center" style="height: 300px;" >
+<div style="border:  2px solid green; padding:30px; margin-top:110px; width: 300px; height: 350px" class="d-flex justify-content-center" >
 <form
 action="${Root}/login"
 method="post"
 >
+<h5>Login</h5>
   <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
+  <div class="glyphicon glyphicon-user"></div>
+    <label  for="exampleInputEmail1">Username</label>
     <input name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="XXX@yahoo.com">
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
@@ -22,3 +26,5 @@ method="post"
   </div>
   <button type="submit" class="btn btn-primary">Log In</button>
 </form>
+</div>
+</div>
